@@ -1,0 +1,99 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Your Campus Events,
+            <span>All in One Place</span>
+        </h1>
+
+        <p>
+            Discover, register, and manage college events effortlessly.
+            Join thousands of students already using Eventix.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="primary-btn">Browse Events</button>
+            <button class="secondary-btn">Get Started</button>
+        </div>
+
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+
+        <div class="feature-card">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>Discover Events</h3>
+            <p>Browse and search through hundreds of college events happening around you</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-calendar"></i>
+            <h3>Easy Registration</h3>
+            <p>Register for events with one click and get instant QR code tickets</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-bell"></i>
+            <h3>Stay Updated</h3>
+            <p>Get notifications about event changes, reminders, and announcements</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-award"></i>
+            <h3>Earn Rewards</h3>
+            <p>Collect points for participation and climb the leaderboard</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Organize Events</h3>
+            <p>Create and manage events with powerful organizer tools</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-sparkles"></i>
+            <h3>Digital Certificates</h3>
+            <p>Receive verified certificates for attended events</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+
+    <h2>Ready to get started?</h2>
+
+    <p>
+        Join your campus community and never miss an event again
+    </p>
+
+    <button>Create Account</button>
+
+</section>
+
+<!-- JS -->
+<script src="script.js"></script>
+
+{% endblock %}
