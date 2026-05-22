@@ -18,3 +18,5 @@ class AuthController:
         return render_template("about.html")
     def home(self):
         return render_template("home.html")
+    def eventdetails(self):
+        return render_template("eventdetails.html")

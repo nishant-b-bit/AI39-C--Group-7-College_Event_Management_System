@@ -15,3 +15,8 @@ def login():
 @home_bp.route("/register")
 def register():
     return render_template("register.html")
+
+@home_bp.route("/eventdetails")
+def eventdetail():
+    return render_template("eventdetails.html")
+

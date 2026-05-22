@@ -1,0 +1,197 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+Event Details
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/event_details.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="event-container">
+
+    <a href="#" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Events
+    </a>
+
+    <div class="event-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop"
+            alt="Event Image"
+            class="event-image">
+
+        <div class="event-content">
+
+            <div class="top-section">
+
+                <div>
+                    <div class="badges">
+                        <span class="badge technical">Technical</span>
+                        <span class="badge upcoming">Upcoming</span>
+                    </div>
+
+                    <h1>Tech Summit 2026</h1>
+                </div>
+
+                <div class="action-buttons">
+                    <button><i class="fa-regular fa-bookmark"></i></button>
+                    <button><i class="fa-solid fa-share-nodes"></i></button>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <i class="fa-solid fa-calendar"></i>
+                    <div>
+                        <p class="label">Date</p>
+                        <p>Friday, May 15, 2026</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fa-regular fa-clock"></i>
+                    <div>
+                        <p class="label">Time</p>
+                        <p>10:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <p class="label">Venue</p>
+                        <p>Main Auditorium, Building A</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fa-solid fa-users"></i>
+                    <div>
+                        <p class="label">Available Seats</p>
+                        <p>55 / 200</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="days-box">
+                Event starts in <strong>10 days</strong>
+            </div>
+
+            <div class="about-section">
+                <h2>About This Event</h2>
+
+                <p>
+                    Join us for the annual technology conference featuring
+                    industry leaders, interactive workshops, and networking opportunities.
+                </p>
+
+                <p>
+                    The Tech Summit 2026 is a comprehensive two-day event designed
+                    to inspire and educate participants about cutting-edge technology.
+                </p>
+            </div>
+
+            <div class="speakers-section">
+
+                <h2>Speakers</h2>
+
+                <div class="speakers-grid">
+
+                    <div class="speaker-card">
+                        <div class="speaker-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div>
+                            <h4>Dr. Sarah Johnson</h4>
+                            <p>AI Researcher</p>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card">
+                        <div class="speaker-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div>
+                            <h4>John Smith</h4>
+                            <p>Senior Developer</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="organizer-box">
+
+                <h2>Organizer Contact</h2>
+
+                <p><strong>Name:</strong> Computer Science Department</p>
+                <p><strong>Email:</strong> cs@college.edu</p>
+                <p><strong>Phone:</strong> +1 234-567-8900</p>
+
+            </div>
+
+            <div class="registration-section">
+
+                <div class="progress-top">
+                    <span>Seats Filled</span>
+                    <span>145 / 200</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <button id="registerBtn" class="register-btn">
+                    Register for Event
+                </button>
+
+                <p class="deadline">
+                    Registration closes on May 10, 2026
+                </p>
+
+            </div>
+
+            <div class="success-box" id="successBox">
+
+                <div class="success-title">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Successfully Registered!
+                </div>
+
+                <p>
+                    You have been registered for this event.
+                </p>
+
+                <div class="qr-box">
+                    QR Code
+                </div>
+
+                <button class="download-btn">
+                    <i class="fa-solid fa-download"></i>
+                    Download Ticket
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/event_details.js') }}"></script>
+{% endblock %}
