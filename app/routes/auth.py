@@ -23,3 +23,7 @@ def eventdetail():
 @home_bp.route("/signup")
 def signup():
     return render_template("signup.html")
+
+@home_bp.route("/view_events")
+def viewevents():
+    return render_template("view_events.html")
