@@ -20,3 +20,6 @@ def register():
 def eventdetail():
     return render_template("event_details.html")
 
+@home_bp.route("/signup")
+def signup():
+    return render_template("signup.html")
