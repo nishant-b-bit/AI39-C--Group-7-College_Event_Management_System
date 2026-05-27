@@ -6,6 +6,6 @@ class Database:
         return mysql.connector.connect(
             host="localhost",
             user="root",
-            password="yourpassword",
+            password="21Apr2124",
             database="event_management"
         )
