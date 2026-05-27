@@ -1,11 +1,10 @@
 from app import create_app
+from app.routes.auth_routes import AuthRoutes
 
-from app.routes.auth import home_bp
+app = create_app()
 
-app=create_app()
+auth_route = AuthRoutes()
+app.register_blueprint(auth_route.register())
 
-app.register_blueprint(home_bp)
-
-if __name__=="__main__":
-
+if __name__ == "__main__":
     app.run(debug=True)
