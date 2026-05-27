@@ -1,5 +1,4 @@
 from flask import render_template, request,redirect, url_for
-from app.models.user_model import User
 class AuthController:
  
     def login(self):
