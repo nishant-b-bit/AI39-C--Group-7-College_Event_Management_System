@@ -4,8 +4,8 @@ class User:
 
     @staticmethod
     def create_user(name, email, password, role):
-        conn = Database.connect()
-        cursor = conn.cursor()
+        db = Database()
+        cursor = db._Database__connection.cursor()
 
         query = """
         INSERT INTO users(name, email, password, role)
@@ -14,14 +14,14 @@ class User:
 
         cursor.execute(query, (name, email, password, role))
 
-        conn.commit()
+        db._Database__connection.commit()
         cursor.close()
-        conn.close()
+        db.close()
 
     @staticmethod
     def login_user(email, password):
-        conn = Database.connect()
-        cursor = conn.cursor(dictionary=True)
+        db = Database()
+        cursor = db._Database__connection.cursor(pymysql.cursors.DictCursor)
 
         query = """
         SELECT * FROM users WHERE email=%s AND password=%s
@@ -31,6 +31,6 @@ class User:
         user = cursor.fetchone()
 
         cursor.close()
-        conn.close()
+        db.close()
 
         return user
