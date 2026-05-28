@@ -29,6 +29,9 @@ class AuthController:
     def signup(self):
         return render_template("signup.html")
  
+    def create_events(self):
+        return render_template("create_events.html")
+    
     def view_events(self):
  
         # temporary dummy data (later we will fetch from DB)
