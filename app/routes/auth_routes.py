@@ -12,5 +12,5 @@ class AuthRoutes:
         self.bp.route("/about",methods=["GET","POST"])(self.controller.about)
         self.bp.route("/",methods=["GET","POST"])(self.controller.home)
         self.bp.route("/event_details",methods=["GET","POST"])(self.controller.eventdetails)
-
+        self.bp.route("/create_events",methods=["GET","POST"])(self.controller.create_events)
         return self.bp
