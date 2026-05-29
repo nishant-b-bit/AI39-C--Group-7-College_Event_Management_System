@@ -104,3 +104,18 @@ class AuthController:
         events=events,
         stats=stats
     )
+    def register_event(self):
+
+     event = {
+        "title": "Tech Summit 2026",
+        "date": "2026-05-15",
+        "time": "10:00 AM",
+        "venue": "Main Auditorium",
+        "organizer": "Eventix Club",
+        "description": "Join Nepal's biggest tech summit with workshops, networking, and innovation showcases."
+    }
+
+     return render_template(
+        "register_event.html",
+        event=event
+    )
