@@ -1,0 +1,173 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.events-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+/* HERO SECTION */
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero-section h1 {
+    font-size: 52px;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    max-width: 700px;
+    margin: auto;
+    color: #6b7280;
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+/* SEARCH SECTION */
+
+.search-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.search-section input {
+    flex: 1;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-size: 16px;
+}
+
+.search-section input:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+.search-section select {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-size: 16px;
+    min-width: 220px;
+    background: white;
+}
+
+.search-section select:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+/* EVENTS GRID */
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* EVENT CARD */
+
+.event-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+}
+
+.event-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.event-content {
+    padding: 24px;
+}
+
+.genre {
+    display: inline-block;
+    background: #ede9fe;
+    color: #4f46e5;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.event-content h2 {
+    margin-bottom: 12px;
+    color: #111827;
+}
+
+.description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.event-info {
+    margin-bottom: 20px;
+}
+
+.event-info p {
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.register-btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    background: #4f46e5;
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    opacity: 0.9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 700px) {
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-section {
+        flex-direction: column;
+    }
+
+    .hero-section h1 {
+        font-size: 38px;
+    }
+
+}

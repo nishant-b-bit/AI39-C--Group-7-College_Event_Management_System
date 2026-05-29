@@ -1,0 +1,109 @@
+
+{% extends "common/base.html" %}
+
+{% block title %}View Events{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/view_events.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="events-container">
+
+    <!-- Hero Section -->
+
+    <div class="hero-section">
+
+        <h1>Explore Events</h1>
+
+        <p>
+            Discover workshops, technical events,
+            festivals, sports events and exciting
+            experiences around you.
+        </p>
+
+    </div>
+
+    <!-- Search + Filter -->
+
+    <div class="search-section">
+
+        <input type="text"
+               id="searchInput"
+               placeholder="Search events...">
+
+        <select id="genreFilter">
+
+            <option value="all">All Genres</option>
+
+            <option value="Technical">Technical</option>
+
+            <option value="Entertainment">Entertainment</option>
+
+            <option value="Workshop">Workshop</option>
+
+            <option value="Sports">Sports</option>
+
+            <option value="Cultural">Cultural</option>
+
+        </select>
+
+    </div>
+
+    <!-- Event Cards -->
+
+    <div class="events-grid">
+
+        {% for event in events %}
+
+        <div class="event-card"
+             data-genre="{{ event.genre }}">
+
+            <img src="{{ url_for('static', filename='images/' + event.image) }}"
+                 alt="event image">
+
+            <div class="event-content">
+
+                <span class="genre">
+                    {{ event.genre }}
+                </span>
+
+                <h2>{{ event.title }}</h2>
+
+                <p class="description">
+                    {{ event.description }}
+                </p>
+
+                <div class="event-info">
+
+                    <p>📅 {{ event.date }}</p>
+
+                    <p>📍 {{ event.location }}</p>
+
+                </div>
+
+                <a href="/register_event"
+                   class="register-btn">
+
+                    Register Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/view_events.js') }}"></script>
+{% endblock %}
+```
