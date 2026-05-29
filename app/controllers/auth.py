@@ -33,30 +33,41 @@ class AuthController:
         return render_template("create_events.html")
     
     def view_events(self):
- 
-        # temporary dummy data (later we will fetch from DB)
-        events = [
-            {
-                "title": "Tech Summit 2026",
-                "genre": "Technical",
-                "date": "2026-05-15",
-                "location": "Main Auditorium"
-            },
-            {
-                "title": "Music Fest Night",
-                "genre": "Entertainment",
-                "date": "2026-06-10",
-                "location": "City Hall"
-            },
-            {
-                "title": "AI Workshop",
-                "genre": "Technical",
-                "date": "2026-05-30",
-                "location": "Lab 3"
-            }
-        ]
- 
-        return render_template("view_events.html", events=events)
+
+     events = [
+        {
+            "id": 1,
+            "title": "Tech Summit 2026",
+            "genre": "Technical",
+            "date": "2026-05-15",
+            "location": "Main Auditorium",
+            "description": "Join Nepal's biggest technology summit with workshops and networking.",
+            "image": "event1.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Music Fest Night",
+            "genre": "Entertainment",
+            "date": "2026-06-10",
+            "location": "City Hall",
+            "description": "A night full of live music, fun, and performances.",
+            "image": "event2.jpg"
+        },
+        {
+            "id": 3,
+            "title": "AI Workshop",
+            "genre": "Technical",
+            "date": "2026-05-30",
+            "location": "Lab 3",
+            "description": "Hands-on AI workshop for students and developers.",
+            "image": "event3.jpg"
+        }
+    ]
+
+     return render_template(
+        "view_events.html",
+        events=events
+    )
     
     def organizer_dashboard(self):
 
