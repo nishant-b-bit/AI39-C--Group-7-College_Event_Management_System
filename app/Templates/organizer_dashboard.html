@@ -1,0 +1,149 @@
+{% extends "common/base.html" %}
+
+{% block title %}Organizer Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/organizer_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Organizer Dashboard</h1>
+            <p>Manage your events and track registrations</p>
+        </div>
+
+        <button class="create-btn" id="openModalBtn">
+            + Create Event
+        </button>
+    </div>
+
+    <!-- Stats -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Events</h3>
+            <p>{{ stats.total_events }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Active Events</h3>
+            <p>{{ stats.active_events }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Registrations</h3>
+            <p>{{ stats.total_registrations }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Pending Approval</h3>
+            <p>{{ stats.pending_approval }}</p>
+        </div>
+
+    </div>
+
+    <!-- Events -->
+
+    <div class="events-section">
+
+        <h2>Your Events</h2>
+
+        {% for event in events %}
+
+        <div class="event-card">
+
+            <div class="event-top">
+
+                <div>
+                    <h3>{{ event.title }}</h3>
+
+                    <p>{{ event.date }}</p>
+
+                    <span class="badge {{ event.approvalStatus }}">
+                        {{ event.approvalStatus }}
+                    </span>
+                </div>
+
+                <div class="event-actions">
+                    <button>Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </div>
+
+            </div>
+
+            <div class="event-info">
+
+                <div>
+                    <h4>Registrations</h4>
+                    <p>{{ event.registrations }} / {{ event.capacity }}</p>
+                </div>
+
+                <div>
+                    <h4>Status</h4>
+                    <p>{{ event.status }}</p>
+                </div>
+
+                <div>
+                    <h4>Capacity</h4>
+                    <p>{{ event.capacity }}</p>
+                </div>
+
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress"
+                     style="width: {{ (event.registrations/event.capacity)*100 }}%">
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="eventModal">
+
+    <div class="modal-content">
+
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+
+        <h2>Create Event</h2>
+
+        <form>
+
+            <input type="text" placeholder="Event Title">
+
+            <textarea placeholder="Description"></textarea>
+
+            <input type="date">
+
+            <input type="time">
+
+            <input type="number" placeholder="Capacity">
+
+            <button type="submit" class="submit-btn">
+                Submit Event
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/organizer_dashboard.js') }}"></script>
+{% endblock %}
