@@ -1,0 +1,94 @@
+{% extends "common/base.html" %}
+
+{% block title %}Register Event{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/register_event.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="register-container">
+
+    <div class="event-card">
+
+        <div class="event-banner">
+            <h1>{{ event.title }}</h1>
+            <p>{{ event.description }}</p>
+        </div>
+
+        <div class="event-details">
+
+            <div class="detail-box">
+                <h3>Date</h3>
+                <p>{{ event.date }}</p>
+            </div>
+
+            <div class="detail-box">
+                <h3>Time</h3>
+                <p>{{ event.time }}</p>
+            </div>
+
+            <div class="detail-box">
+                <h3>Venue</h3>
+                <p>{{ event.venue }}</p>
+            </div>
+
+            <div class="detail-box">
+                <h3>Organizer</h3>
+                <p>{{ event.organizer }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Registration Form -->
+
+    <div class="form-card">
+
+        <h2>Register For Event</h2>
+
+        <form id="registerForm">
+
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Phone Number</label>
+                <input type="text" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="input-group">
+                <label>College / Organization</label>
+                <input type="text" placeholder="Enter college name">
+            </div>
+
+            <div class="input-group">
+                <label>Message</label>
+                <textarea placeholder="Optional message"></textarea>
+            </div>
+
+            <button type="submit" class="register-btn">
+                Register Now
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/register_event.js') }}"></script>
+{% endblock %}

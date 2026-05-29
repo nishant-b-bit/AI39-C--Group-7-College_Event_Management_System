@@ -1,0 +1,130 @@
+.register-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+.event-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+}
+
+.event-banner {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 50px;
+}
+
+.event-banner h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.event-banner p {
+    max-width: 700px;
+    line-height: 1.7;
+}
+
+.event-details {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    padding: 30px;
+}
+
+.detail-box {
+    background: #f5f7ff;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.detail-box h3 {
+    color: #4f46e5;
+    margin-bottom: 10px;
+}
+
+.form-card {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.form-card h2 {
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #4f46e5;
+    outline: none;
+}
+
+.register-btn {
+    width: 100%;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    opacity: 0.9;
+}
+
+@media(max-width: 900px) {
+
+    .event-details {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    .event-details {
+        grid-template-columns: 1fr;
+    }
+
+    .event-banner h1 {
+        font-size: 32px;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+
+}
