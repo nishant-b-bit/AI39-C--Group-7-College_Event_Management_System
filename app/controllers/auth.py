@@ -57,3 +57,50 @@ class AuthController:
         ]
  
         return render_template("view_events.html", events=events)
+    
+    def organizer_dashboard(self):
+
+    # Dummy event data
+        events = [
+        {
+            "id": 1,
+            "title": "Tech Summit 2026",
+            "date": "2026-05-15",
+            "status": "Approved",
+            "registrations": 145,
+            "capacity": 200,
+            "approvalStatus": "approved",
+        },
+        {
+            "id": 2,
+            "title": "Workshop on AI",
+            "date": "2026-05-20",
+            "status": "Pending",
+            "registrations": 0,
+            "capacity": 50,
+            "approvalStatus": "pending",
+        },
+        {
+            "id": 3,
+            "title": "Cultural Fest",
+            "date": "2026-04-20",
+            "status": "Ended",
+            "registrations": 320,
+            "capacity": 500,
+            "approvalStatus": "approved",
+        }
+    ]
+
+    # Dashboard statistics
+        stats = {
+        "total_events": len(events),
+        "active_events": 2,
+        "total_registrations": 465,
+        "pending_approval": 1
+    }
+
+        return render_template(
+        "organizer_dashboard.html",
+        events=events,
+        stats=stats
+    )
