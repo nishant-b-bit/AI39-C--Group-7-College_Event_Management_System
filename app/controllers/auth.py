@@ -1,11 +1,33 @@
-from flask import render_template, request,redirect, url_for
+from flask import render_template, request,redirect, url_for,session
 from app.models.database import Database
 class AuthController:
  
     def login(self):
         if request.method=="POST":
-            print(request.form)
+            email=request.form.get("email")
+            password=request.form.get("password")
+
+            db=Database()
+
+            user=db.fetch_one(
+                "SELECT * FROM users WHERE email=%s AND password=%s",
+                (email,password)
+            )
+
+            if user:
+                session["user_id"]=user["id"]
+                session["role"] = user["role"]
+                if user["role"] == "student":
+                    return redirect(url_for("auth.home"))
+                elif user["role"] == "organizer":
+                    return redirect(url_for("auth.organizer_dashboard"))
+                elif user["role"] == "admin":
+                    return redirect(url_for("auth.home"))
+            return "Invalid email or password"
         return render_template("login.html")
+
+            
+        
     
     def register(self):
         if request.method == "POST":
