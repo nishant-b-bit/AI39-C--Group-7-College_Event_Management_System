@@ -1,0 +1,60 @@
+{% extends "common/base.html" %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Student Dashboard</h1>
+            <p>Browse and manage your event registrations</p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Registered Events</h3>
+            <p>4</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Upcoming Events</h3>
+            <p>2</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Completed Events</h3>
+            <p>2</p>
+        </div>
+
+    </div>
+
+    <div class="events-section">
+
+        <h2>My Events</h2>
+
+        <div class="event-card">
+            <h3>Tech Summit 2026</h3>
+            <p>Date: 2026-05-15</p>
+            <p>Status: Registered</p>
+        </div>
+
+        <div class="event-card">
+            <h3>AI Workshop</h3>
+            <p>Date: 2026-05-30</p>
+            <p>Status: Registered</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
