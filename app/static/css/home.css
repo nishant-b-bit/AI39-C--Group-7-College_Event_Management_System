@@ -120,6 +120,21 @@
     cursor: pointer;
     font-size: 16px;
 }
+.cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: white;
+    color: #4f46e5;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: #e5e7ff;
+}
 
 /* Footer */
 
