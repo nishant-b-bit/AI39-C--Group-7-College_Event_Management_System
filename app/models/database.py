@@ -11,13 +11,17 @@ class Database:
                 password=config.mysql_password,
                 database=config.mysql_database,
                 cursorclass=pymysql.cursors.DictCursor,
+                autocommit=True
             )
             print("Database connected Sucessfully!")
         except pymysql.MySQLError as e:
             print('Database connection failed!')
             print("error:",e)
+            self.__connection=None
     
     def fetch_one(self, query, params=None):
+        if not self.__connection:
+            return None
         """Run a query and return ONE result (or None)."""
         cursor = self.__connection.cursor()
         cursor.execute(query, params)
@@ -37,7 +41,7 @@ class Database:
         """Run a query that changes data (INSERT, UPDATE, DELETE)."""
         cursor = self.__connection.cursor()
         cursor.execute(query, params)
-        self.__connection.commit()
+        
         cursor.close()
 
     def close(self):
