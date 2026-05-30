@@ -1,4 +1,5 @@
 from flask import render_template, request,redirect, url_for
+from app.models.database import Database
 class AuthController:
  
     def login(self):
@@ -8,8 +9,19 @@ class AuthController:
     
     def register(self):
         if request.method == "POST":
-            print(request.form)
-        return render_template("register.html")
+            name = request.form.get("name")
+            email = request.form.get("email")
+            password = request.form.get("password")
+            role = request.form.get("role")
+            
+            db= Database()
+            db.execute(
+                "INSERT INTO users (name, email, password, role) VALUES (%s, %s, %s, %s)",
+                (name, email, password, role)
+            )
+
+            return redirect(url_for("auth.login"))
+        return render_template("signup.html")
  
     def base(self):
         return render_template("base.html")
@@ -26,8 +38,6 @@ class AuthController:
     def eventdetails(self):
         return render_template("event_details.html")
  
-    def signup(self):
-        return render_template("signup.html")
  
     def create_events(self):
         return render_template("create_events.html")
