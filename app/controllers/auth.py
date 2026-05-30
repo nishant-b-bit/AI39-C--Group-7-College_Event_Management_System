@@ -18,11 +18,11 @@ class AuthController:
                 session["user_id"]=user["id"]
                 session["role"] = user["role"]
                 if user["role"] == "student":
-                    return redirect(url_for("auth.home"))
+                    return redirect(url_for("auth.student_dashboard"))
                 elif user["role"] == "organizer":
                     return redirect(url_for("auth.organizer_dashboard"))
                 elif user["role"] == "admin":
-                    return redirect(url_for("auth.home"))
+                    return redirect(url_for("auth.admin_dashboard"))
             return "Invalid email or password"
         return render_template("login.html")
 
@@ -147,6 +147,14 @@ class AuthController:
         events=events,
         stats=stats
     )
+    def student_dashboard(self):
+       return render_template("student_dashboard.html")
+    
+
+    def admin_dashboard(self):
+       return render_template("admin_dashboard.html")
+    
+
     def register_event(self):
 
      event = {
