@@ -1,0 +1,63 @@
+{% extends "common/base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Admin Dashboard</h1>
+            <p>Manage users, organizers and event approvals</p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Users</h3>
+            <p>120</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Events</h3>
+            <p>35</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Pending Approvals</h3>
+            <p>5</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Organizers</h3>
+            <p>12</p>
+        </div>
+
+    </div>
+
+    <div class="events-section">
+
+        <h2>Pending Event Approvals</h2>
+
+        <div class="event-card">
+            <h3>Hackathon 2026</h3>
+            <p>Organizer: CS Club</p>
+
+            <div class="event-actions">
+                <button>Approve</button>
+                <button class="delete-btn">Reject</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
