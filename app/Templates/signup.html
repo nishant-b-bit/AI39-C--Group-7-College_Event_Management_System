@@ -15,10 +15,16 @@ Signup
 
         <h2>Create Account</h2>
 
-        <form>
-            <input type="text" placeholder="Username" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+        <form  method="POST" action="{{ url_for('auth.register') }}">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <select name="role">
+              <option value="student">Student</option>
+              <option value="organizer">Organizer</option>
+              <option value="admin">Admin</option>
+            </select>
 
             <button type="submit">Sign Up</button>
         </form>
