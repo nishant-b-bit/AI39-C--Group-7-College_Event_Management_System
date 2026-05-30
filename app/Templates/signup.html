@@ -31,7 +31,9 @@ Signup
             <button type="submit">Sign Up</button>
         </form>
 
-        <p>Already have an account? <a href="#">Login</a></p>
+        <p>Already have an account? 
+            <a href="{{ url_for('auth.login') }}">Login</a>
+        </p>
 
     </div>
 </div>
