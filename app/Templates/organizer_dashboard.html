@@ -71,7 +71,9 @@
                 </div>
 
                 <div class="event-actions">
-                    <button>Edit</button>
+                    <a href="{{ url_for('auth.edit_event') }}">
+                        <button>Edit</button>
+                    </a>
                     <button class="delete-btn">Delete</button>
                 </div>
 
