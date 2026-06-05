@@ -215,3 +215,104 @@ class AuthController:
         "participants.html",
         participants=participants
     )
+
+    def attendance(self):
+
+     participants = [
+
+        {
+            "name":"Ram Sharma",
+            "email":"ram@gmail.com",
+            "present":True
+        },
+
+        {
+            "name":"Hari Bhatta",
+            "email":"hari@gmail.com",
+            "present":True
+        },
+
+        {
+            "name":"Sita KC",
+            "email":"sita@gmail.com",
+            "present":False
+        }
+
+    ]
+
+     return render_template(
+        "attendance.html",
+        participants=participants
+    )
+
+    def event_capacity(self):
+
+     event = {
+        "title":"Tech Summit 2026",
+        "capacity":200,
+        "registered":145,
+        "remaining":55,
+        "attendance":121
+    }
+
+     return render_template(
+        "event_capacity.html",
+        event=event
+    )
+
+
+    def approve_events(self):
+
+     events = [
+
+        {
+            "title":"Tech Summit 2026",
+            "organizer":"IT Club",
+            "category":"Technical",
+            "date":"2026-05-15",
+            "capacity":200,
+            "status":"Pending",
+            "description":"Join Nepal's biggest technology summit."
+        },
+
+        {
+            "title":"Music Fest",
+            "organizer":"Music Club",
+            "category":"Entertainment",
+            "date":"2026-06-10",
+            "capacity":500,
+            "status":"Pending",
+            "description":"A night full of music and performances."
+        }
+
+    ]
+
+     return render_template(
+        "approve_events.html",
+        events=events
+    )
+
+    def manage_users(self):
+
+     users = [
+        {
+            "name": "Ram Sharma",
+            "email": "ram@gmail.com",
+            "role": "student"
+        },
+        {
+            "name": "Hari Bhatta",
+            "email": "hari@gmail.com",
+            "role": "organizer"
+        },
+        {
+            "name": "Admin One",
+            "email": "admin@gmail.com",
+            "role": "admin"
+        }
+    ]
+
+     return render_template(
+        "manage_users.html",
+        users=users
+    )
