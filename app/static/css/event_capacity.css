@@ -1,0 +1,73 @@
+.capacity-container{
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+
+.page-header{
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-size:36px;
+}
+
+.page-header p{
+    color:gray;
+}
+
+.event-card{
+    background:white;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.event-card h2{
+    margin-bottom:25px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.stat-box{
+    background:#f8f9ff;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.stat-box h3{
+    color:gray;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.capacity-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.capacity-form input{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.capacity-form button{
+    background:#4f46e5;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
+}
