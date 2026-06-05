@@ -1,0 +1,73 @@
+.approval-container{
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+
+.page-header{
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-size:36px;
+}
+
+.page-header p{
+    color:gray;
+}
+
+.approval-card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.status-badge{
+    background:#fef9c3;
+    color:#ca8a04;
+    padding:6px 12px;
+    border-radius:20px;
+}
+
+.event-info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.description{
+    margin-bottom:20px;
+}
+
+.action-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.approve-btn{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.reject-btn{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
