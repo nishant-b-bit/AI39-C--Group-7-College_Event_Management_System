@@ -1,0 +1,95 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+Approve Events
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/approve_events.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="approval-container">
+
+    <div class="page-header">
+
+        <h1>Approve Events</h1>
+
+        <p>
+            Review organizer event submissions
+        </p>
+
+    </div>
+
+    {% for event in events %}
+
+    <div class="approval-card">
+
+        <div class="card-top">
+
+            <div>
+
+                <h2>{{ event.title }}</h2>
+
+                <span class="status-badge">
+                    {{ event.status }}
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="event-info">
+
+            <p>
+                <strong>Organizer:</strong>
+                {{ event.organizer }}
+            </p>
+
+            <p>
+                <strong>Category:</strong>
+                {{ event.category }}
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                {{ event.date }}
+            </p>
+
+            <p>
+                <strong>Capacity:</strong>
+                {{ event.capacity }}
+            </p>
+
+        </div>
+
+        <div class="description">
+
+            <h4>Description</h4>
+
+            <p>{{ event.description }}</p>
+
+        </div>
+
+        <div class="action-buttons">
+
+            <button class="approve-btn">
+                Approve
+            </button>
+
+            <button class="reject-btn">
+                Reject
+            </button>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
