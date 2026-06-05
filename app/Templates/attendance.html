@@ -1,0 +1,80 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+Attendance
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/attendance.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="attendance-container">
+
+    <div class="attendance-header">
+
+        <div>
+            <h1>Attendance</h1>
+            <p>Mark participants present at the event</p>
+        </div>
+
+        <input
+        type="text"
+        placeholder="Search participant">
+    </div>
+
+    <div class="attendance-card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Present</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for participant in participants %}
+
+                <tr>
+
+                    <td>{{ participant.name }}</td>
+
+                    <td>{{ participant.email }}</td>
+
+                    <td>
+
+                        <input
+                        type="checkbox"
+                        {% if participant.present %}
+                        checked
+                        {% endif %}
+                        >
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <button class="save-btn">
+            Save Attendance
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}
