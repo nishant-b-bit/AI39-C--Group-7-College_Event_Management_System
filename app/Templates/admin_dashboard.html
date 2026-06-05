@@ -11,6 +11,7 @@
 
 <div class="dashboard-container">
 
+    <!-- HEADER -->
     <div class="dashboard-header">
         <div>
             <h1>Admin Dashboard</h1>
@@ -18,6 +19,7 @@
         </div>
     </div>
 
+    <!-- STATS -->
     <div class="stats-grid">
 
         <div class="stat-card">
@@ -42,9 +44,33 @@
 
     </div>
 
+    <!-- ADMIN ACTION BUTTONS -->
+    <div class="admin-actions">
+
+        <a href="{{ url_for('auth.manage_users') }}">
+            <button class="admin-btn">
+                Manage Users
+            </button>
+        </a>
+
+        <a href="{{ url_for('auth.approve_events') }}">
+            <button class="admin-btn">
+                Approve Events
+            </button>
+        </a>
+
+    </div>
+
+    <!-- PENDING EVENTS -->
     <div class="events-section">
 
         <h2>Pending Event Approvals</h2>
+
+        <a href="{{ url_for('auth.approve_events') }}">
+            <button class="view-all-btn">
+                View All
+            </button>
+        </a>
 
         <div class="event-card">
             <h3>Hackathon 2026</h3>
