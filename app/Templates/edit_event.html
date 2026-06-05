@@ -1,0 +1,66 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+Edit Event
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/edit_event.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-container">
+
+    <div class="edit-card">
+
+        <h1>Edit Event</h1>
+        <p>Update your event information</p>
+
+        <form>
+
+            <label>Event Title</label>
+            <input
+            type="text"
+            value="{{ event.title }}">
+
+            <label>Genre</label>
+            <input
+            type="text"
+            value="{{ event.genre }}">
+
+            <label>Date</label>
+            <input
+            type="date"
+            value="{{ event.date }}">
+
+            <label>Location</label>
+            <input
+            type="text"
+            value="{{ event.location }}">
+
+            <label>Capacity</label>
+            <input
+            type="number"
+            value="{{ event.capacity }}">
+
+            <label>Description</label>
+
+            <textarea rows="6">
+{{ event.description }}
+            </textarea>
+
+            <button type="submit"
+            class="save-btn">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
