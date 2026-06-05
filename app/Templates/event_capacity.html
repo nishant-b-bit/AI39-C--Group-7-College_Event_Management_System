@@ -1,0 +1,72 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+Capacity Control
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/event_capacity.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="capacity-container">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Capacity Control</h1>
+            <p>Manage event registration limits</p>
+        </div>
+
+    </div>
+
+    <div class="event-card">
+
+        <h2>{{ event.title }}</h2>
+
+        <div class="stats-grid">
+
+            <div class="stat-box">
+                <h3>Capacity</h3>
+                <p>{{ event.capacity }}</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Registered</h3>
+                <p>{{ event.registered }}</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Remaining</h3>
+                <p>{{ event.remaining }}</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Attendance</h3>
+                <p>{{ event.attendance }}</p>
+            </div>
+
+        </div>
+
+        <form class="capacity-form">
+
+            <label>New Capacity</label>
+
+            <input
+            type="number"
+            value="{{ event.capacity }}">
+
+            <button type="submit">
+                Update Capacity
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
