@@ -170,3 +170,19 @@ class AuthController:
         "register_event.html",
         event=event
     )
+
+    def edit_event(self):
+
+     event = {
+        "title":"Tech Summit 2026",
+        "genre":"Technical",
+        "date":"2026-05-15",
+        "location":"Main Auditorium",
+        "capacity":200,
+        "description":"Join Nepal's biggest technology summit."
+    }
+
+     return render_template(
+         "edit_event.html",
+        event=event
+    )
