@@ -1,0 +1,72 @@
+{% extends "common/base.html" %}
+
+{% block title %}
+Participants
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/participants.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="participants-container">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Participants</h1>
+            <p>View all registered participants</p>
+        </div>
+
+        <input
+        type="text"
+        placeholder="Search participant">
+
+    </div>
+
+    <div class="participants-card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for participant in participants %}
+
+                <tr>
+
+                    <td>{{ participant.name }}</td>
+
+                    <td>{{ participant.email }}</td>
+
+                    <td>
+                        <span class="status">
+                            {{ participant.status }}
+                        </span>
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
