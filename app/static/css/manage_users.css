@@ -1,0 +1,79 @@
+.users-container{
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-size:36px;
+}
+
+.page-header p{
+    color:gray;
+}
+
+.page-header input{
+    width:250px;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.users-card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    text-align:left;
+    padding:16px;
+    border-bottom:1px solid #eee;
+}
+
+thead{
+    background:#f5f5f5;
+}
+
+.role{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.role.student{
+    background:#dcfce7;
+    color:green;
+}
+
+.role.organizer{
+    background:#fef9c3;
+    color:#ca8a04;
+}
+
+.role.admin{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.delete-btn{
+    background:#fee2e2;
+    color:red;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
