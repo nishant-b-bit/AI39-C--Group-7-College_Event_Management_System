@@ -19,4 +19,5 @@ class AuthRoutes:
         self.bp.route("/student_dashboard")(self.controller.student_dashboard)
         self.bp.route("/admin_dashboard")(self.controller.admin_dashboard) 
         self.bp.route("/edit_event",methods=["GET","POST"])(self.controller.edit_event)
+        self.bp.route("/participants")(self.controller.participants)
         return self.bp
