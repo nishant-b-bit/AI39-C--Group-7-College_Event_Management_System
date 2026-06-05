@@ -186,3 +186,32 @@ class AuthController:
          "edit_event.html",
         event=event
     )
+
+    def participants(self):
+
+     participants = [
+
+        {
+            "name":"Ram Sharma",
+            "email":"ram@gmail.com",
+            "status":"Registered"
+        },
+
+        {
+            "name":"Hari Bhatta",
+            "email":"hari@gmail.com",
+            "status":"Registered"
+        },
+
+        {
+            "name":"Sita KC",
+            "email":"sita@gmail.com",
+            "status":"Registered"
+        }
+
+    ]
+
+     return render_template(
+        "participants.html",
+        participants=participants
+    )
