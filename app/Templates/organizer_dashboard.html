@@ -72,20 +72,27 @@
 
                 <div class="event-actions">
 
-                  <a href="{{ url_for('auth.edit_event') }}">
-                       <button>Edit</button>
-                  </a>
+                    <a href="{{ url_for('auth.edit_event') }}">
+                      <button>Edit</button>
+                    </a>
 
-                  <a href="{{ url_for('auth.participants') }}">
-                        <button>Participants</button>
-                  </a>
+                    <a href="{{ url_for('auth.participants') }}">
+                       <button>Participants</button>
+                    </a>
 
-                  <button class="delete-btn">
-                       Delete
-                  </button>
+                    <a href="{{ url_for('auth.attendance') }}">
+                      <button>Attendance</button>
+                    </a>
+
+                    <a href="{{ url_for('auth.event_capacity') }}">
+                      <button>Capacity</button>
+                    </a>
+
+                    <button class="delete-btn">
+                      Delete
+                    </button>
 
                 </div>
-
             </div>
 
             <div class="event-info">
