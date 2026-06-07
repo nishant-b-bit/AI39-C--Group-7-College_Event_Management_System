@@ -1,0 +1,37 @@
+{% extends "common/base.html" %}
+{% block title %}About Eventix{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>About Eventix</h1>
+        <p>Eventix helps colleges manage events from proposal and approval to registrations, attendance, certificates, and student notifications.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('auth.view_events') }}"><button class="primary-btn">Browse Events</button></a>
+            <a href="{{ url_for('auth.contact') }}"><button class="secondary-btn">Contact Us</button></a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <i class="fa-solid fa-user-shield"></i>
+        <h3>Role Based</h3>
+        <p>Students, organizers, and admins each get the tools they need.</p>
+    </div>
+    <div class="feature-card">
+        <i class="fa-solid fa-calendar-check"></i>
+        <h3>Event Workflow</h3>
+        <p>Create, approve, publish, track, and complete events in one place.</p>
+    </div>
+    <div class="feature-card">
+        <i class="fa-solid fa-certificate"></i>
+        <h3>Certificates</h3>
+        <p>Students can download certificates after attendance is marked.</p>
+    </div>
+</section>
+{% endblock %}
