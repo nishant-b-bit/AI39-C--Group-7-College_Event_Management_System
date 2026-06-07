@@ -1,72 +1,76 @@
 {% extends "common/base.html" %}
-
-{% block title %}
-Participants
-{% endblock %}
+{% block title %}Participants - {{ event.title }}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet"
-href="{{ url_for('static',
-filename='css/participants.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/participants.css') }}">
 {% endblock %}
 
 {% block content %}
-
 <div class="participants-container">
-
     <div class="page-header">
-
         <div>
             <h1>Participants</h1>
-            <p>View all registered participants</p>
+            <p>{{ event.title }}</p>
         </div>
-
-        <input
-        type="text"
-        placeholder="Search participant">
-
+        <div>
+            <a href="{{ url_for('auth.download_participants_csv', event_id=event.id) }}">Download CSV</a>
+            <a href="{{ url_for('auth.organizer_dashboard') }}">Back to Dashboard</a>
+        </div>
     </div>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
     <div class="participants-card">
-
+        {% if participants %}
         <table>
-
             <thead>
-
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Phone</th>
+                    <th>College</th>
+                    <th>Registered At</th>
                     <th>Status</th>
+                    <th>Attendance</th>
+                    <th>Update</th>
                 </tr>
-
             </thead>
-
             <tbody>
-
-                {% for participant in participants %}
-
+                {% for p in participants %}
                 <tr>
-
-                    <td>{{ participant.name }}</td>
-
-                    <td>{{ participant.email }}</td>
-
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.email }}</td>
+                    <td>{{ p.phone or '-' }}</td>
+                    <td>{{ p.college or '-' }}</td>
+                    <td>{{ p.registered_at }}</td>
+                    <td>{{ p.status|title }}</td>
                     <td>
                         <span class="status">
-                            {{ participant.status }}
+                            {% if p.attended %}Present{% else %}Not marked{% endif %}
                         </span>
                     </td>
-
+                    <td>
+                        <form method="POST" action="{{ url_for('auth.manage_registration_status', event_id=event.id) }}">
+                            <input type="hidden" name="registration_id" value="{{ p.registration_id }}">
+                            <select name="status">
+                                {% for status in ['pending', 'selected', 'waitlisted', 'rejected', 'cancelled'] %}
+                                <option value="{{ status }}" {% if p.status == status %}selected{% endif %}>{{ status|title }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Save</button>
+                        </form>
+                    </td>
                 </tr>
-
                 {% endfor %}
-
             </tbody>
-
         </table>
-
+        {% else %}
+        <p>No participants registered yet.</p>
+        {% endif %}
     </div>
-
 </div>
-
 {% endblock %}
