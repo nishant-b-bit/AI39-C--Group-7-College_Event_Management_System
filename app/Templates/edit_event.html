@@ -1,66 +1,46 @@
 {% extends "common/base.html" %}
-
-{% block title %}
-Edit Event
-{% endblock %}
+{% block title %}Edit Event{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet"
-href="{{ url_for('static',
-filename='css/edit_event.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit_event.css') }}">
 {% endblock %}
 
 {% block content %}
-
 <div class="edit-container">
+  <div class="edit-card">
+    <h1>Edit Event</h1>
+    <p>Update event information and submit it for admin review again.</p>
 
-    <div class="edit-card">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
 
-        <h1>Edit Event</h1>
-        <p>Update your event information</p>
-
-        <form>
-
-            <label>Event Title</label>
-            <input
-            type="text"
-            value="{{ event.title }}">
-
-            <label>Genre</label>
-            <input
-            type="text"
-            value="{{ event.genre }}">
-
-            <label>Date</label>
-            <input
-            type="date"
-            value="{{ event.date }}">
-
-            <label>Location</label>
-            <input
-            type="text"
-            value="{{ event.location }}">
-
-            <label>Capacity</label>
-            <input
-            type="number"
-            value="{{ event.capacity }}">
-
-            <label>Description</label>
-
-            <textarea rows="6">
-{{ event.description }}
-            </textarea>
-
-            <button type="submit"
-            class="save-btn">
-                Save Changes
-            </button>
-
-        </form>
-
-    </div>
-
+    <form method="POST" action="{{ url_for('auth.edit_event', event_id=event.id) }}">
+        <input  type="text"   name="title"       value="{{ event.title }}"       required>
+        <select name="category_id">
+            <option value="">Select Category</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}" {% if event.category_id == category.id %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+            {% endfor %}
+        </select>
+        <input  type="text"   name="genre"       value="{{ event.genre or '' }}" placeholder="Custom category (optional)">
+        <input  type="date"   name="date"        value="{{ event.date }}"        required>
+        <input  type="time"   name="time"        value="{{ event.time or '' }}">
+        <input  type="text"   name="location"    value="{{ event.location }}"    required>
+        <input  type="number" name="capacity"    value="{{ event.capacity }}"    min="1">
+        <select name="event_status">
+            {% for status in ['upcoming', 'ongoing', 'completed', 'cancelled'] %}
+            <option value="{{ status }}" {% if event.event_status == status %}selected{% endif %}>{{ status|title }}</option>
+            {% endfor %}
+        </select>
+        <textarea             name="description">{{ event.description or '' }}</textarea>
+        <button type="submit" class="save-btn">Save Changes</button>
+    </form>
+    <a href="{{ url_for('auth.organizer_dashboard') }}">← Back to Dashboard</a>
+  </div>
 </div>
-
 {% endblock %}
