@@ -1,8 +1,6 @@
 {% extends 'common/base.html' %}
 
-{% block title %}
-Event Details
-{% endblock %}
+{% block title %}{{ event.title }}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet"
@@ -10,48 +8,36 @@ Event Details
 {% endblock %}
 
 {% block content %}
-
 <div class="event-container">
-
-    <a href="#" class="back-link">
+    <a href="{{ url_for('auth.view_events') }}" class="back-link">
         <i class="fa-solid fa-arrow-left"></i>
         Back to Events
     </a>
 
     <div class="event-card">
-
         <img
             src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop"
-            alt="Event Image"
+            alt="{{ event.title }}"
             class="event-image">
 
         <div class="event-content">
-
             <div class="top-section">
-
                 <div>
                     <div class="badges">
-                        <span class="badge technical">Technical</span>
-                        <span class="badge upcoming">Upcoming</span>
+                        <span class="badge technical">{{ event.category_name or 'General' }}</span>
+                        <span class="badge upcoming">{{ event.event_status|title }}</span>
                     </div>
 
-                    <h1>Tech Summit 2026</h1>
+                    <h1>{{ event.title }}</h1>
                 </div>
-
-                <div class="action-buttons">
-                    <button><i class="fa-regular fa-bookmark"></i></button>
-                    <button><i class="fa-solid fa-share-nodes"></i></button>
-                </div>
-
             </div>
 
             <div class="info-grid">
-
                 <div class="info-box">
                     <i class="fa-solid fa-calendar"></i>
                     <div>
                         <p class="label">Date</p>
-                        <p>Friday, May 15, 2026</p>
+                        <p>{{ event.date }}</p>
                     </div>
                 </div>
 
@@ -59,7 +45,7 @@ Event Details
                     <i class="fa-regular fa-clock"></i>
                     <div>
                         <p class="label">Time</p>
-                        <p>10:00 AM - 5:00 PM</p>
+                        <p>{{ event.time or 'To be announced' }}</p>
                     </div>
                 </div>
 
@@ -67,131 +53,67 @@ Event Details
                     <i class="fa-solid fa-location-dot"></i>
                     <div>
                         <p class="label">Venue</p>
-                        <p>Main Auditorium, Building A</p>
+                        <p>{{ event.location }}</p>
                     </div>
                 </div>
 
                 <div class="info-box">
                     <i class="fa-solid fa-users"></i>
                     <div>
-                        <p class="label">Available Seats</p>
-                        <p>55 / 200</p>
+                        <p class="label">Seats</p>
+                        <p>{{ event.registered }} / {{ event.capacity }} registered</p>
                     </div>
                 </div>
-
-            </div>
-
-            <div class="days-box">
-                Event starts in <strong>10 days</strong>
             </div>
 
             <div class="about-section">
                 <h2>About This Event</h2>
-
-                <p>
-                    Join us for the annual technology conference featuring
-                    industry leaders, interactive workshops, and networking opportunities.
-                </p>
-
-                <p>
-                    The Tech Summit 2026 is a comprehensive two-day event designed
-                    to inspire and educate participants about cutting-edge technology.
-                </p>
-            </div>
-
-            <div class="speakers-section">
-
-                <h2>Speakers</h2>
-
-                <div class="speakers-grid">
-
-                    <div class="speaker-card">
-                        <div class="speaker-icon">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-
-                        <div>
-                            <h4>Dr. Sarah Johnson</h4>
-                            <p>AI Researcher</p>
-                        </div>
-                    </div>
-
-                    <div class="speaker-card">
-                        <div class="speaker-icon">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-
-                        <div>
-                            <h4>John Smith</h4>
-                            <p>Senior Developer</p>
-                        </div>
-                    </div>
-
-                </div>
-
+                <p>{{ event.description or 'No description has been added for this event yet.' }}</p>
             </div>
 
             <div class="organizer-box">
-
                 <h2>Organizer Contact</h2>
-
-                <p><strong>Name:</strong> Computer Science Department</p>
-                <p><strong>Email:</strong> cs@college.edu</p>
-                <p><strong>Phone:</strong> +1 234-567-8900</p>
-
+                <p><strong>Name:</strong> {{ event.organizer_name }}</p>
             </div>
 
             <div class="registration-section">
-
                 <div class="progress-top">
                     <span>Seats Filled</span>
-                    <span>145 / 200</span>
+                    <span>{{ event.registered }} / {{ event.capacity }}</span>
                 </div>
 
                 <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <div class="progress-fill"
+                        style="width: {{ [(event.registered / event.capacity * 100)|int, 100]|min if event.capacity > 0 else 0 }}%;">
+                    </div>
                 </div>
 
-                <button id="registerBtn" class="register-btn">
-                    Register for Event
-                </button>
-
-                <p class="deadline">
-                    Registration closes on May 10, 2026
-                </p>
-
+                {% if session.get('role') == 'student' %}
+                    {% if event.registered < event.capacity %}
+                    <form method="POST" action="{{ url_for('auth.register_for_event') }}">
+                        <input type="hidden" name="event_id" value="{{ event.id }}">
+                        <button type="submit" class="register-btn">Register for Event</button>
+                    </form>
+                    {% else %}
+                    <form method="POST" action="{{ url_for('auth.register_for_event') }}">
+                        <input type="hidden" name="event_id" value="{{ event.id }}">
+                        <button type="submit" class="register-btn">Join Waitlist</button>
+                    </form>
+                    {% endif %}
+                {% else %}
+                <p class="deadline">Log in as a student to register for this event.</p>
+                {% endif %}
             </div>
 
-            <div class="success-box" id="successBox">
-
-                <div class="success-title">
-                    <i class="fa-solid fa-circle-check"></i>
-                    Successfully Registered!
-                </div>
-
-                <p>
-                    You have been registered for this event.
-                </p>
-
-                <div class="qr-box">
-                    QR Code
-                </div>
-
-                <button class="download-btn">
-                    <i class="fa-solid fa-download"></i>
-                    Download Ticket
-                </button>
-
+            {% if announcements %}
+            <div class="about-section">
+                <h2>Announcements</h2>
+                {% for announcement in announcements %}
+                <p><strong>{{ announcement.created_at }}:</strong> {{ announcement.message }}</p>
+                {% endfor %}
             </div>
-
+            {% endif %}
         </div>
-
     </div>
-
 </div>
-
-{% endblock %}
-
-{% block extra_js %}
-<script src="{{ url_for('static', filename='js/event_details.js') }}"></script>
 {% endblock %}
