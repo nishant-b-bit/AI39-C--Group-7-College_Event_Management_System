@@ -1,17 +1,34 @@
-<!-- Navbar -->
 <nav class="navbar">
     <div class="container nav-container">
 
         <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo.svg') }}">
+            <a href="{{ url_for('auth.home') }}">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Eventix">
+            </a>
         </div>
 
         <div class="nav-links" id="navLinks">
-            <a href="#">Browse Events</a>
-            <a href="#">Organizer</a>
-            <a href="#">Admin</a>
+            <a href="{{ url_for('auth.view_events') }}">Browse Events</a>
 
-            <a href="{{ url_for('auth.register') }}" class="signin-btn">Sign Up</a>
+            {% if session.get('role') == 'organizer' %}
+                <a href="{{ url_for('auth.organizer_dashboard') }}">My Dashboard</a>
+            {% elif session.get('role') == 'admin' %}
+                <a href="{{ url_for('auth.admin_dashboard') }}">Admin Panel</a>
+            {% elif session.get('role') == 'student' %}
+                <a href="{{ url_for('auth.student_dashboard') }}">My Dashboard</a>
+            {% endif %}
+
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('auth.notifications') }}">
+                    Notifications{% if unread_notifications %} ({{ unread_notifications }}){% endif %}
+                </a>
+                <a href="{{ url_for('auth.edit_profile') }}">Profile</a>
+                <span class="nav-user">Hello, {{ session.get('name', 'User') }}</span>
+                <a href="{{ url_for('auth.logout') }}" class="signin-btn">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.register') }}" class="signin-btn">Sign Up</a>
+                <a href="{{ url_for('auth.login') }}" class="signin-btn">Login</a>
+            {% endif %}
         </div>
 
         <div class="menu-icon" id="menuIcon">
