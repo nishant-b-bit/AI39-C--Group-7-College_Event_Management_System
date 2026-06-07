@@ -1,0 +1,31 @@
+{% extends "common/base.html" %}
+{% block title %}Notifications{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <div>
+            <h1>Notifications</h1>
+            <p>Recent updates about your events and registrations</p>
+        </div>
+    </div>
+
+    <div class="events-section">
+        {% if notifications %}
+          {% for notification in notifications %}
+          <div class="event-card">
+              <h3>{{ "Unread" if not notification.is_read else "Read" }}</h3>
+              <p>{{ notification.message }}</p>
+              <p>{{ notification.created_at }}</p>
+          </div>
+          {% endfor %}
+        {% else %}
+          <p>No notifications yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
