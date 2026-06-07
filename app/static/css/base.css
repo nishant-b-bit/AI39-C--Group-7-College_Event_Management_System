@@ -7,6 +7,8 @@
 
 body {
     background: linear-gradient(to bottom, white, #f5f7ff);
+    color: #111827;
+    min-height: 100vh;
 }
 
 /* Navbar */
@@ -53,6 +55,11 @@ body {
     background: #f1f1f1;
 }
 
+.nav-user {
+    color: #4b5563;
+    font-size: 14px;
+}
+
 .signin-btn {
     background: #4f46e5;
     color: white;
@@ -70,4 +77,74 @@ body {
     display: none;
     font-size: 24px;
     cursor: pointer;
+}
+
+button,
+select,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+table select,
+form input,
+form select,
+form textarea {
+    max-width: 100%;
+}
+
+main {
+    min-height: calc(100vh - 170px);
+}
+
+footer {
+    background: #111827;
+    color: #aaa;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 92%;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 16px 5%;
+        display: none;
+        border-top: 1px solid #ddd;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a,
+    .nav-user {
+        display: block;
+        width: 100%;
+    }
 }
