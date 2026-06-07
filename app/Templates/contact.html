@@ -1,0 +1,23 @@
+{% extends "common/base.html" %}
+{% block title %}Contact Eventix{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_events.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Contact Eventix</h1>
+        <p>Reach the college event management team for organizer access, event approval help, or student registration support.</p>
+    </div>
+</section>
+
+<div class="create-container">
+    <h2>Support Details</h2>
+    <p><strong>Email:</strong> eventix@college.edu</p>
+    <p><strong>Office:</strong> Student Affairs Department</p>
+    <p><strong>Hours:</strong> Sunday to Friday, 10:00 AM - 4:00 PM</p>
+</div>
+{% endblock %}
