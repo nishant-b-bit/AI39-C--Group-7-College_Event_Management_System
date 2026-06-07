@@ -1,80 +1,45 @@
 {% extends "common/base.html" %}
-
-{% block title %}
-Attendance
-{% endblock %}
+{% block title %}Attendance - {{ event.title }}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet"
-href="{{ url_for('static',
-filename='css/attendance.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/attendance.css') }}">
 {% endblock %}
 
 {% block content %}
-
 <div class="attendance-container">
+    <h2>Attendance — {{ event.title }}</h2>
+    <p><a href="{{ url_for('auth.organizer_dashboard') }}">← Back to Dashboard</a></p>
 
-    <div class="attendance-header">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
 
-        <div>
-            <h1>Attendance</h1>
-            <p>Mark participants present at the event</p>
-        </div>
-
-        <input
-        type="text"
-        placeholder="Search participant">
-    </div>
-
-    <div class="attendance-card">
-
+    {% if participants %}
+    <form method="POST" action="{{ url_for('auth.attendance', event_id=event.id) }}">
         <table>
-
             <thead>
-
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Present</th>
-                </tr>
-
+                <tr><th>Name</th><th>Email</th><th>Present</th></tr>
             </thead>
-
             <tbody>
-
-                {% for participant in participants %}
-
+                {% for p in participants %}
                 <tr>
-
-                    <td>{{ participant.name }}</td>
-
-                    <td>{{ participant.email }}</td>
-
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.email }}</td>
                     <td>
-
-                        <input
-                        type="checkbox"
-                        {% if participant.present %}
-                        checked
-                        {% endif %}
-                        >
-
+                        <input type="checkbox" name="attended"
+                               value="{{ p.student_id }}"
+                               {% if p.attended %}checked{% endif %}>
                     </td>
-
                 </tr>
-
                 {% endfor %}
-
             </tbody>
-
         </table>
-
-        <button class="save-btn">
-            Save Attendance
-        </button>
-
-    </div>
-
+        <button type="submit" class="save-btn">Save Attendance</button>
+    </form>
+    {% else %}
+    <p>No participants registered yet.</p>
+    {% endif %}
 </div>
-
 {% endblock %}
