@@ -1,32 +1,41 @@
-{% extends 'common/base.html' %}
-
+{% extends "common/base.html" %}
 {% block title %}Create Event{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_events.css') }}">
+{% endblock %}
+
 {% block content %}
-
 <div class="create-container">
+    <h2>Create New Event</h2>
 
-    <h1>Create Event</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
 
-    <form method="POST">
-
-        <input type="text" name="title" placeholder="Event Title" required>
-
-        <select name="genre">
-            <option value="Entertainment">Entertainment</option>
-            <option value="Sports">Sports</option>
+    <form method="POST" action="{{ url_for('auth.create_events') }}">
+        <input  type="text"   name="title"       placeholder="Event Title"    required>
+        <select name="category_id">
+            <option value="">Select Category</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
         </select>
-
-        <input type="date" name="date" required>
-
-        <input type="text" name="location" placeholder="Location" required>
-
-        <textarea name="description" placeholder="Event Description"></textarea>
-
-        <button type="submit">Create Event</button>
-
+        <input  type="text"   name="genre"       placeholder="Custom category (optional)">
+        <input  type="date"   name="date"        required>
+        <input  type="time"   name="time">
+        <input  type="text"   name="location"    placeholder="Venue / Location" required>
+        <input  type="number" name="capacity"    placeholder="Capacity" min="1" value="100">
+        <select name="event_status">
+            <option value="upcoming">Upcoming</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+        </select>
+        <textarea             name="description" placeholder="Event Description"></textarea>
+        <button type="submit" class="submit-btn">Submit for Approval</button>
     </form>
-
 </div>
-
 {% endblock %}
