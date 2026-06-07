@@ -1,27 +1,38 @@
 from flask import Blueprint
+
+from app.controllers.admin import AdminController
 from app.controllers.auth import AuthController
+from app.controllers.organizer import OrganizerController
+from app.controllers.student import StudentController
+from app.routes.admin_routes import register_admin_routes
+from app.routes.organizer_routes import register_organizer_routes
+from app.routes.public_routes import (
+    register_auth_routes,
+    register_event_routes,
+    register_public_routes,
+)
+from app.routes.student_routes import register_student_routes
+
+
 class AuthRoutes:
     def __init__(self):
-        self.bp=Blueprint("auth",__name__)
-        self.controller=AuthController()
+        self.bp = Blueprint("auth", __name__)
+        self.auth_controller = AuthController()
+        self.student_controller = StudentController()
+        self.organizer_controller = OrganizerController()
+        self.admin_controller = AdminController()
+
     def register(self):
-        self.bp.route("/login",methods=["GET","POST"])(self.controller.login)
-        self.bp.route("/signup", methods=["GET", "POST"])(self.controller.register)
-        self.bp.route("/base",methods=["GET","POST"])(self.controller.base)
-        self.bp.route("/contact",methods=["GET","POST"])(self.controller.contact)
-        self.bp.route("/about",methods=["GET","POST"])(self.controller.about)
-        self.bp.route("/",methods=["GET","POST"])(self.controller.home)
-        self.bp.route("/event_details",methods=["GET","POST"])(self.controller.eventdetails)
-        self.bp.route("/create_events",methods=["GET","POST"])(self.controller.create_events)
-        self.bp.route("/organizer_dashboard", methods=["GET", "POST"])(self.controller.organizer_dashboard)
-        self.bp.route("/register_event", methods=["GET", "POST"])(self.controller.register_event)
-        self.bp.route("/view_events", methods=["GET", "POST"])(self.controller.view_events)
-        self.bp.route("/student_dashboard")(self.controller.student_dashboard)
-        self.bp.route("/admin_dashboard")(self.controller.admin_dashboard) 
-        self.bp.route("/edit_event",methods=["GET","POST"])(self.controller.edit_event)
-        self.bp.route("/participants")(self.controller.participants)
-        self.bp.route("/attendance")(self.controller.attendance)
-        self.bp.route("/event_capacity")(self.controller.event_capacity)
-        self.bp.route("/approve_events")(self.controller.approve_events)
-        self.bp.route("/manage_users")(self.controller.manage_users)
+        auth = self.auth_controller
+        student = self.student_controller
+        organizer = self.organizer_controller
+        admin = self.admin_controller
+
+        register_public_routes(self.bp, auth)
+        register_auth_routes(self.bp, auth)
+        register_event_routes(self.bp, auth)
+        register_student_routes(self.bp, student)
+        register_organizer_routes(self.bp, organizer)
+        register_admin_routes(self.bp, admin)
+
         return self.bp
