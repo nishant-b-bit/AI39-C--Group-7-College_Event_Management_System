@@ -1,0 +1,13 @@
+def register_organizer_routes(bp, controller):
+    bp.route("/organizer_dashboard")(controller.organizer_dashboard)
+    bp.route("/create_events", methods=["GET", "POST"])(controller.create_events)
+    bp.route("/edit_event/<int:event_id>", methods=["GET", "POST"])(controller.edit_event)
+    bp.route("/delete_event/<int:event_id>", methods=["POST"])(controller.delete_event)
+    bp.route("/participants/<int:event_id>")(controller.participants)
+    bp.route("/participants/<int:event_id>/csv")(controller.download_participants_csv)
+    bp.route("/attendance/<int:event_id>", methods=["GET", "POST"])(controller.attendance)
+    bp.route("/event_capacity/<int:event_id>")(controller.event_capacity)
+    bp.route("/event_capacity/<int:event_id>", methods=["POST"])(controller.update_event_capacity)
+    bp.route("/announcements/<int:event_id>", methods=["GET", "POST"])(controller.announcements)
+    bp.route("/manage_registrations/<int:event_id>", methods=["POST"])(controller.manage_registration_status)
+    bp.route("/update_event_status/<int:event_id>", methods=["POST"])(controller.update_event_status)
