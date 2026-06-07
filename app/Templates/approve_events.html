@@ -1,95 +1,63 @@
 {% extends "common/base.html" %}
-
-{% block title %}
-Approve Events
-{% endblock %}
+{% block title %}Approve Events{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet"
-href="{{ url_for('static',
-filename='css/approve_events.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/approve_events.css') }}">
 {% endblock %}
 
 {% block content %}
-
 <div class="approval-container">
 
     <div class="page-header">
-
         <h1>Approve Events</h1>
-
-        <p>
-            Review organizer event submissions
-        </p>
-
+        <p>Review organizer event submissions</p>
     </div>
 
-    {% for event in events %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
 
-    <div class="approval-card">
+    {% if events %}
+      {% for event in events %}
+      <div class="approval-card">
+          <div class="card-top">
+              <div>
+                  <h2>{{ event.title }}</h2>
+                  <span class="status-badge">{{ event.status }}</span>
+              </div>
+          </div>
 
-        <div class="card-top">
+          <div class="event-info">
+              <p><strong>Organizer:</strong> {{ event.organizer_name }}</p>
+              <p><strong>Category:</strong> {{ event.category_name or event.genre or 'General' }}</p>
+              <p><strong>Event Status:</strong> {{ event.event_status|title }}</p>
+              <p><strong>Date:</strong> {{ event.date }}</p>
+              <p><strong>Location:</strong> {{ event.location }}</p>
+              <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+          </div>
 
-            <div>
+          <div class="description">
+              <h4>Description</h4>
+              <p>{{ event.description }}</p>
+          </div>
 
-                <h2>{{ event.title }}</h2>
-
-                <span class="status-badge">
-                    {{ event.status }}
-                </span>
-
-            </div>
-
-        </div>
-
-        <div class="event-info">
-
-            <p>
-                <strong>Organizer:</strong>
-                {{ event.organizer }}
-            </p>
-
-            <p>
-                <strong>Category:</strong>
-                {{ event.category }}
-            </p>
-
-            <p>
-                <strong>Date:</strong>
-                {{ event.date }}
-            </p>
-
-            <p>
-                <strong>Capacity:</strong>
-                {{ event.capacity }}
-            </p>
-
-        </div>
-
-        <div class="description">
-
-            <h4>Description</h4>
-
-            <p>{{ event.description }}</p>
-
-        </div>
-
-        <div class="action-buttons">
-
-            <button class="approve-btn">
-                Approve
-            </button>
-
-            <button class="reject-btn">
-                Reject
-            </button>
-
-        </div>
-
-    </div>
-
-    {% endfor %}
+          <div class="action-buttons">
+              <form method="POST" action="{{ url_for('auth.approve_event_action', event_id=event.id) }}" style="display:inline">
+                  <input type="hidden" name="action" value="approved">
+                  <button type="submit" class="approve-btn">Approve</button>
+              </form>
+              <form method="POST" action="{{ url_for('auth.approve_event_action', event_id=event.id) }}" style="display:inline">
+                  <input type="hidden" name="action" value="rejected">
+                  <button type="submit" class="reject-btn">Reject</button>
+              </form>
+          </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No pending events to review.</p>
+    {% endif %}
 
 </div>
-
 {% endblock %}
