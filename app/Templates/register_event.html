@@ -32,12 +32,12 @@
 
             <div class="detail-box">
                 <h3>Venue</h3>
-                <p>{{ event.venue }}</p>
+                <p>{{ event.location }}</p>
             </div>
 
             <div class="detail-box">
                 <h3>Organizer</h3>
-                <p>{{ event.organizer }}</p>
+                <p>{{ event.organizer_name }}</p>
             </div>
 
         </div>
@@ -50,7 +50,8 @@
 
         <h2>Register For Event</h2>
 
-        <form id="registerForm">
+            <form method="POST" action="{{ url_for('auth.register_for_event') }}">
+                <input type="hidden" name="event_id" value="{{ event.id }}">
 
             <div class="input-group">
                 <label>Full Name</label>
@@ -87,8 +88,4 @@
 
 </div>
 
-{% endblock %}
-
-{% block extra_js %}
-<script src="{{ url_for('static', filename='js/register_event.js') }}"></script>
 {% endblock %}
