@@ -1,0 +1,35 @@
+{% extends "common/base.html" %}
+{% block title %}Announcements - {{ event.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_events.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="create-container">
+    <h2>Announcements</h2>
+    <p>{{ event.title }}</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('auth.announcements', event_id=event.id) }}">
+        <textarea name="message" placeholder="Write an announcement" required></textarea>
+        <button type="submit">Post Announcement</button>
+    </form>
+
+    {% if announcements %}
+      {% for announcement in announcements %}
+      <div class="alert alert-success">
+          <strong>{{ announcement.created_at }}</strong><br>
+          {{ announcement.message }}
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No announcements yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
