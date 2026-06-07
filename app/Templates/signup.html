@@ -1,41 +1,41 @@
 {% extends 'common/base.html' %}
 
-{% block title %}
-Signup
-{% endblock %}
+{% block title %}Sign Up{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
 {% endblock %}
 
 {% block content %}
-
 <div class="signup-container">
     <div class="signup-box">
-
         <h2>Create Account</h2>
 
-        <form  method="POST" action="{{ url_for('auth.register') }}">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('auth.register') }}">
+            <input type="text"     name="name"     placeholder="Full Name"  required>
+            <input type="email"    name="email"    placeholder="Email"      required>
+            <input type="password" name="password" placeholder="Password (min 6 chars)" required minlength="6">
             <br><br>
 
             <select name="role">
               <option value="student">Student</option>
               <option value="organizer">Organizer</option>
-              <option value="admin">Admin</option>
+              <!-- Admin role is NOT available here; admins are set by another admin -->
             </select>
             <br><br>
 
             <button type="submit">Sign Up</button>
         </form>
 
-        <p>Already have an account? 
+        <p>Already have an account?
             <a href="{{ url_for('auth.login') }}">Login</a>
         </p>
-
     </div>
 </div>
-
 {% endblock %}
