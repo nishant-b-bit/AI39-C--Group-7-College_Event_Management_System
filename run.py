@@ -1,12 +1,11 @@
 from app import create_app
-from app.routes.auth_routes import AuthRoutes
-from app.models.database import Database
+from app.models import create_tables
+from app.routes import create_auth_blueprint
 
 app = create_app()
-Database.create_tables()
+create_tables()
 
-auth_route = AuthRoutes()
-app.register_blueprint(auth_route.register())
+app.register_blueprint(create_auth_blueprint())
 
 if __name__ == "__main__":
     app.run(debug=True)
