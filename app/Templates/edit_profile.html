@@ -1,0 +1,29 @@
+{% extends "common/base.html" %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_events.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="create-container">
+    <h2>Edit Profile</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('auth.edit_profile') }}">
+        <input type="text" name="name" value="{{ user.name }}" placeholder="Full Name" required>
+        <input type="email" value="{{ user.email }}" disabled>
+        <input type="text" name="phone" value="{{ user.phone or '' }}" placeholder="Phone">
+        <input type="text" name="college" value="{{ user.college or '' }}" placeholder="College">
+        <button type="submit">Save Profile</button>
+    </form>
+    <br><br>
+
+    <p><a href="{{ url_for('auth.change_password') }}">Change Password</a></p>
+</div>
+{% endblock %}
