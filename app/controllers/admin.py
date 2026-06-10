@@ -82,8 +82,21 @@ class AdminController:
     @role_required("admin")
     def manage_users(self):
         db = Database()
-        users = db.fetch_all(
-            "SELECT id, name, email, role, created_at FROM users ORDER BY created_at DESC")
+        created_at_column = db.fetch_one("""
+            SELECT COUNT(*) AS cnt
+            FROM information_schema.COLUMNS
+            WHERE TABLE_SCHEMA = DATABASE()
+              AND TABLE_NAME = 'users'
+              AND COLUMN_NAME = 'created_at'
+        """)
+        if created_at_column and created_at_column["cnt"]:
+            users = db.fetch_all(
+                "SELECT id, name, email, role, created_at FROM users ORDER BY created_at DESC"
+            )
+        else:
+            users = db.fetch_all(
+                "SELECT id, name, email, role, NULL AS created_at FROM users ORDER BY id DESC"
+            )
         db.close()
         return render_template("manage_users.html", users=users)
 
