@@ -96,6 +96,7 @@ def _seed_categories(db):
 
 
 def _upgrade_existing_tables(db):
+    _add_column(db, "users", "created_at", "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     _add_column(db, "users", "phone", "VARCHAR(30)")
     _add_column(db, "users", "college", "VARCHAR(150)")
     _add_column(db, "users", "reset_token", "VARCHAR(100)")
