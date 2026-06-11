@@ -12,6 +12,12 @@
             <h1>Notifications</h1>
             <p>Recent updates about your events and registrations</p>
         </div>
+        {% if notifications %}
+        <form method="POST" action="{{ url_for('auth.clear_notifications') }}"
+              onsubmit="return confirm('Delete all notifications?')">
+            <button type="submit" class="delete-btn">Clear All</button>
+        </form>
+        {% endif %}
     </div>
 
     <div class="events-section">
@@ -21,6 +27,13 @@
               <h3>{{ "Unread" if not notification.is_read else "Read" }}</h3>
               <p>{{ notification.message }}</p>
               <p>{{ notification.created_at }}</p>
+              <div class="event-actions">
+                  <form method="POST"
+                        action="{{ url_for('auth.delete_notification', notification_id=notification.id) }}"
+                        onsubmit="return confirm('Delete this notification?')">
+                      <button type="submit" class="delete-btn">Delete</button>
+                  </form>
+              </div>
           </div>
           {% endfor %}
         {% else %}
