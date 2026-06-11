@@ -47,6 +47,20 @@ def notify_user(user_id, message):
     db.close()
 
 
+def notify_students(message):
+    db = Database()
+    db.execute(
+        """
+        INSERT INTO notifications (user_id, message)
+        SELECT id, %s
+        FROM users
+        WHERE role='student'
+        """,
+        (message,),
+    )
+    db.close()
+
+
 def promote_waitlisted_student(event_id, event_title):
     db = Database()
     moved = db.fetch_one("""
