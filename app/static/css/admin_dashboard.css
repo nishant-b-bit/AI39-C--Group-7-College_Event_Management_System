@@ -6,6 +6,11 @@
 
 .dashboard-header {
     margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .dashboard-header h1 {
@@ -73,6 +78,10 @@
 .delete-btn {
     background: #fee2e2;
     color: red;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px 16px;
 }
 .section-header{
     display:flex;
