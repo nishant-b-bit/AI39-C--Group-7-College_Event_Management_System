@@ -12,6 +12,8 @@ def register_auth_routes(bp, controller):
     bp.route("/change_password", methods=["GET", "POST"])(controller.change_password)
     bp.route("/reset_password", methods=["GET", "POST"])(controller.reset_password)
     bp.route("/notifications")(controller.notifications)
+    bp.route("/notifications/<int:notification_id>/delete", methods=["POST"])(controller.delete_notification)
+    bp.route("/notifications/clear", methods=["POST"])(controller.clear_notifications)
 
 
 def register_event_routes(bp, controller):
