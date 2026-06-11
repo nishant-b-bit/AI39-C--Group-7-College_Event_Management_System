@@ -205,6 +205,25 @@ class AuthController:
         return render_template("notifications.html", notifications=notifications)
 
     @login_required
+    def delete_notification(self, notification_id):
+        db = Database()
+        db.execute(
+            "DELETE FROM notifications WHERE id=%s AND user_id=%s",
+            (notification_id, session["user_id"]),
+        )
+        db.close()
+        flash("Notification deleted.", "success")
+        return redirect(url_for("auth.notifications"))
+
+    @login_required
+    def clear_notifications(self):
+        db = Database()
+        db.execute("DELETE FROM notifications WHERE user_id=%s", (session["user_id"],))
+        db.close()
+        flash("All notifications deleted.", "success")
+        return redirect(url_for("auth.notifications"))
+
+    @login_required
     def view_events(self):
         search = request.args.get("search", "").strip()
         category = request.args.get("category", "").strip()
