@@ -1,6 +1,6 @@
 from flask import flash, redirect, render_template, request, session, url_for
 
-from app.controllers.helpers import login_required, notify_user, role_required
+from app.controllers.helpers import login_required, notify_students, notify_user, role_required
 from app.models.database import Database
 
 
@@ -75,6 +75,8 @@ class AdminController:
         db.execute("UPDATE events SET status=%s WHERE id=%s", (action, event_id))
         db.close()
         notify_user(event["organizer_id"], f"Event {action}: {event['title']}.")
+        if action == "approved":
+            notify_students(f"New event is live: {event['title']}.")
         flash(f"Event {action}.", "success")
         return redirect(url_for("auth.approve_events"))
 
