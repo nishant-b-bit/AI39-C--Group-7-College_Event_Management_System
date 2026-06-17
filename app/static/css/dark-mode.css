@@ -1,0 +1,161 @@
+[data-theme="dark"] body,
+[data-theme="dark"] .events-page,
+[data-theme="dark"] .signup-page,
+[data-theme="dark"] .signup-container {
+    background: var(--page-bg);
+    color: var(--text);
+}
+
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .nav-links {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .nav-links a:not(.signin-btn),
+[data-theme="dark"] .menu-icon,
+[data-theme="dark"] .nav-user {
+    color: var(--text);
+}
+
+[data-theme="dark"] .login-box,
+[data-theme="dark"] .signup-box,
+[data-theme="dark"] .create-container,
+[data-theme="dark"] .edit-card,
+[data-theme="dark"] .event-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .events-section,
+[data-theme="dark"] .users-card,
+[data-theme="dark"] .attendance-card,
+[data-theme="dark"] .participants-card,
+[data-theme="dark"] .approval-card,
+[data-theme="dark"] .capacity-form,
+[data-theme="dark"] .progress-section,
+[data-theme="dark"] .detail-box,
+[data-theme="dark"] .form-card,
+[data-theme="dark"] .info-box,
+[data-theme="dark"] .speaker-card,
+[data-theme="dark"] .days-box,
+[data-theme="dark"] .organizer-box,
+[data-theme="dark"] .registration-section,
+[data-theme="dark"] .success-box,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .search-section,
+[data-theme="dark"] .modal-content {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea,
+[data-theme="dark"] .filter-bar input,
+[data-theme="dark"] .filter-bar select,
+[data-theme="dark"] .status-form select {
+    background: #0f172a;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] table,
+[data-theme="dark"] th,
+[data-theme="dark"] td {
+    color: var(--text);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] th,
+[data-theme="dark"] .event-info,
+[data-theme="dark"] .event-details,
+[data-theme="dark"] .event-meta,
+[data-theme="dark"] .filter-bar a,
+[data-theme="dark"] .progress-bar,
+[data-theme="dark"] .qr-box {
+    background: var(--surface-muted);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] p,
+[data-theme="dark"] label,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] .page-header p,
+[data-theme="dark"] .dashboard-header p,
+[data-theme="dark"] .hero p,
+[data-theme="dark"] .hero-section p,
+[data-theme="dark"] .feature-card p,
+[data-theme="dark"] .event-card p,
+[data-theme="dark"] .event-body p,
+[data-theme="dark"] .description,
+[data-theme="dark"] .deadline,
+[data-theme="dark"] .label {
+    color: inherit;
+}
+
+[data-theme="dark"] a:not(.signin-btn):not(.primary-btn):not(.secondary-btn):not(.register-btn):not(.create-btn):not(.save-btn):not(.admin-btn):not(.view-all-btn) {
+    color: #a5b4fc;
+}
+
+[data-theme="dark"] .secondary-btn,
+[data-theme="dark"] .cta-btn {
+    background: var(--surface);
+    color: #a5b4fc;
+    border-color: #a5b4fc;
+}
+
+[data-theme="dark"] .genre,
+[data-theme="dark"] .genre-badge,
+[data-theme="dark"] .technical {
+    background: #312e81;
+    color: #c4b5fd;
+}
+
+[data-theme="dark"] .upcoming,
+[data-theme="dark"] .approved,
+[data-theme="dark"] .success-title,
+[data-theme="dark"] .status {
+    background: #12351f;
+    color: #bbf7d0;
+}
+
+[data-theme="dark"] .pending,
+[data-theme="dark"] .status-badge {
+    background: #3f3210;
+    color: #fde68a;
+}
+
+[data-theme="dark"] .rejected,
+[data-theme="dark"] .delete-btn {
+    background: #3f1518;
+    color: #fecaca;
+}
+
+[data-theme="dark"] .alert-success {
+    background: #12351f;
+    color: #bbf7d0;
+    border-color: #166534;
+}
+
+[data-theme="dark"] .alert-danger {
+    background: #3f1518;
+    color: #fecaca;
+    border-color: #991b1b;
+}
+
+[data-theme="dark"] .alert-warning {
+    background: #3f3210;
+    color: #fde68a;
+    border-color: #a16207;
+}
