@@ -40,9 +40,31 @@ class AdminController:
             "total_registrations": total_registrations,
             "total_categories": total_categories,
         }
+        status_copy = {
+            "upcoming": "Approved events that are ready for students to discover.",
+            "ongoing": "Events currently in progress and needing live attention.",
+            "completed": "Finished events that can be reviewed for attendance and outcomes.",
+            "cancelled": "Events that were cancelled and may need follow-up communication.",
+        }
+        status_counts = {item["event_status"]: item["cnt"] for item in events_by_status}
+        status_order = ("upcoming", "ongoing", "completed", "cancelled")
+        platform_overview = []
+
+        for status in status_order:
+            count = status_counts.get(status, 0)
+            percent = round((count / total_events) * 100) if total_events else 0
+            platform_overview.append({
+                "status": status,
+                "label": status.replace("_", " ").title(),
+                "count": count,
+                "percent": percent,
+                "description": status_copy[status],
+            })
+
         return render_template("admin_dashboard.html", stats=stats,
                                pending_events=pending_events,
-                               events_by_status=events_by_status)
+                               events_by_status=events_by_status,
+                               platform_overview=platform_overview)
 
     @login_required
     @role_required("admin")
