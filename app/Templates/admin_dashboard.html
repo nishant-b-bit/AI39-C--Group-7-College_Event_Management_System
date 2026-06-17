@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/admin_dashboard.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="dashboard-container">
 
@@ -61,14 +65,53 @@
     </div>
 
     <div class="events-section">
-        <h2>Platform Overview</h2>
-        {% if events_by_status %}
-          {% for item in events_by_status %}
-          <div class="event-card">
-              <h3>{{ item.event_status|title }}</h3>
-              <p>{{ item.cnt }} events</p>
+        <div class="section-header">
+            <div>
+                <h2>Platform Overview</h2>
+                <p class="section-subtitle">Click a status to inspect its share of all events.</p>
+            </div>
+            <span class="overview-total">{{ stats.total_events }} total events</span>
+        </div>
+
+        {% if platform_overview %}
+          <div class="overview-panel">
+              <div class="overview-grid" role="list">
+                  {% for item in platform_overview %}
+                  <button
+                      class="overview-card{% if loop.first %} active{% endif %}"
+                      type="button"
+                      data-status="{{ item.label }}"
+                      data-count="{{ item.count }}"
+                      data-percent="{{ item.percent }}"
+                      data-description="{{ item.description }}"
+                      role="listitem"
+                  >
+                      <span class="overview-label">{{ item.label }}</span>
+                      <strong>{{ item.count }}</strong>
+                      <span>{{ item.percent }}% of events</span>
+                      <span class="overview-progress" aria-hidden="true">
+                          <span style="width: {{ item.percent }}%;"></span>
+                      </span>
+                  </button>
+                  {% endfor %}
+              </div>
+
+              <div class="overview-detail" id="overviewDetail" aria-live="polite">
+                  <span class="detail-kicker">Selected status</span>
+                  <h3>{{ platform_overview[0].label }}</h3>
+                  <p>{{ platform_overview[0].description }}</p>
+                  <div class="detail-metrics">
+                      <div>
+                          <span>Events</span>
+                          <strong>{{ platform_overview[0].count }}</strong>
+                      </div>
+                      <div>
+                          <span>Share</span>
+                          <strong>{{ platform_overview[0].percent }}%</strong>
+                      </div>
+                  </div>
+              </div>
           </div>
-          {% endfor %}
         {% else %}
           <p>No event data yet.</p>
         {% endif %}
