@@ -5,7 +5,20 @@ from app.models.database import Database
 
 
 class AuthController:
+    def _dashboard_url_for_current_role(self):
+        role = session.get("role")
+        if role == "student":
+            return url_for("auth.student_dashboard")
+        if role == "organizer":
+            return url_for("auth.organizer_dashboard")
+        if role == "admin":
+            return url_for("auth.admin_dashboard")
+        return None
+
     def home(self):
+        dashboard_url = self._dashboard_url_for_current_role()
+        if dashboard_url:
+            return redirect(dashboard_url)
         return render_template("home.html")
 
     def about(self):
@@ -49,12 +62,9 @@ class AuthController:
                 session["role"] = user["role"]
                 session["name"] = user["name"]
 
-                if user["role"] == "student":
-                    return redirect(url_for("auth.student_dashboard"))
-                if user["role"] == "organizer":
-                    return redirect(url_for("auth.organizer_dashboard"))
-                if user["role"] == "admin":
-                    return redirect(url_for("auth.admin_dashboard"))
+                dashboard_url = self._dashboard_url_for_current_role()
+                if dashboard_url:
+                    return redirect(dashboard_url)
 
             flash("Invalid email or password.", "danger")
             return render_template("login.html")
