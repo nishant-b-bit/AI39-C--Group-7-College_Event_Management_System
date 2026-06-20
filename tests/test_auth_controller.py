@@ -121,6 +121,52 @@ class TestRegister(unittest.TestCase):
         self.assertIn(("success", "Account created! Please log in."), flashes)
 
 
+class TestHome(unittest.TestCase):
+    def setUp(self):
+        self.app = make_test_app()
+        self.controller = AuthController()
+
+    @patch("app.controllers.auth.render_template")
+    def test_home_shows_for_guest(self, mock_render):
+        mock_render.return_value = "home_page"
+
+        with self.app.test_request_context(method="GET"):
+            result = self.controller.home()
+
+        self.assertEqual(result, "home_page")
+        mock_render.assert_called_once_with("home.html")
+
+    def test_home_redirects_logged_in_student_to_dashboard(self):
+        with self.app.test_request_context(method="GET"):
+            session["user_id"] = 2
+            session["role"] = "student"
+
+            response = self.controller.home()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/student_dashboard", response.location)
+
+    def test_home_redirects_logged_in_organizer_to_dashboard(self):
+        with self.app.test_request_context(method="GET"):
+            session["user_id"] = 3
+            session["role"] = "organizer"
+
+            response = self.controller.home()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/organizer_dashboard", response.location)
+
+    def test_home_redirects_logged_in_admin_to_dashboard(self):
+        with self.app.test_request_context(method="GET"):
+            session["user_id"] = 4
+            session["role"] = "admin"
+
+            response = self.controller.home()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/admin_dashboard", response.location)
+
+
 class TestLogin(unittest.TestCase):
     def setUp(self):
         self.app = make_test_app()
