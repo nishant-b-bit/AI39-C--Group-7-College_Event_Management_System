@@ -65,6 +65,28 @@
     margin: 6px 0;
 }
 
+.attendance-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.attendance-present {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.attendance-not-marked {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
 .event-actions {
     display: flex;
     flex-wrap: wrap;
