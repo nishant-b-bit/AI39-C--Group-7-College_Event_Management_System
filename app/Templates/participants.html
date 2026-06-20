@@ -49,9 +49,11 @@
                     <td>{{ p.registered_at }}</td>
                     <td>{{ p.status|title }}</td>
                     <td>
-                        <span class="status">
-                            {% if p.attended %}Present{% else %}Not marked{% endif %}
-                        </span>
+                        {% if p.attended %}
+                        <span class="status status-present">Present</span>
+                        {% else %}
+                        <span class="status status-not-marked">Not marked</span>
+                        {% endif %}
                     </td>
                     <td>
                         <form method="POST" action="{{ url_for('auth.manage_registration_status', event_id=event.id) }}">
