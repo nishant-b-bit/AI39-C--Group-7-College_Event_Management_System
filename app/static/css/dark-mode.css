@@ -130,6 +130,18 @@
     color: #bbf7d0;
 }
 
+[data-theme="dark"] .status-present,
+[data-theme="dark"] .attendance-present {
+    background: #12351f;
+    color: #bbf7d0;
+}
+
+[data-theme="dark"] .status-not-marked,
+[data-theme="dark"] .attendance-not-marked {
+    background: #1f2937;
+    color: #cbd5e1;
+}
+
 [data-theme="dark"] .pending,
 [data-theme="dark"] .status-badge {
     background: #3f3210;
