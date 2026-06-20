@@ -52,7 +52,14 @@
               <p>Location: {{ r.location }}</p>
               <p>Event Status: {{ r.event_status|title }}</p>
               <p>Registration Status: {{ r.registration_status|title }}</p>
-              <p>Attendance: {{ "Present" if r.attended else "Not marked" }}</p>
+              <p>
+                  Attendance:
+                  {% if r.attended %}
+                  <span class="attendance-status attendance-present">Present</span>
+                  {% else %}
+                  <span class="attendance-status attendance-not-marked">Not marked</span>
+                  {% endif %}
+              </p>
               <div class="event-actions">
                   {% if r.registration_status not in ['cancelled', 'rejected'] %}
                   <form method="POST" action="{{ url_for('auth.cancel_registration', registration_id=r.registration_id) }}"
