@@ -2,7 +2,15 @@
     <div class="container nav-container">
 
         <div class="logo">
+            {% if session.get('role') == 'organizer' %}
+            <a href="{{ url_for('auth.organizer_dashboard') }}">
+            {% elif session.get('role') == 'admin' %}
+            <a href="{{ url_for('auth.admin_dashboard') }}">
+            {% elif session.get('role') == 'student' %}
+            <a href="{{ url_for('auth.student_dashboard') }}">
+            {% else %}
             <a href="{{ url_for('auth.home') }}">
+            {% endif %}
                 <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Eventix">
             </a>
         </div>
