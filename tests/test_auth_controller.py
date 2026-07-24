@@ -1,6 +1,3 @@
-"""
-    python -m pytest tests/test_auth_controller.py -v
-"""
 
 import unittest
 from unittest.mock import MagicMock, patch

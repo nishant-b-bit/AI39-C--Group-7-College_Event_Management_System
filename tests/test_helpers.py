@@ -1,6 +1,3 @@
-"""
-    python -m pytest tests/test_helpers.py -v
-"""
 
 import unittest
 
